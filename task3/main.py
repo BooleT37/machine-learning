@@ -2,8 +2,8 @@ from sklearn import metrics
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
-from datareader import read_csv
-from utils import count_false_positives_and_negatives
+from task3.datareader import read_csv
+from task3.utils import count_false_positives_and_negatives
 
 TOTAL_VALUES_COUNT = 10000
 TRAIN_VALUES_PART = 0.8
@@ -21,7 +21,7 @@ y_train = df_train['isOrg'].map(lambda v: 1 if v else 0)
 y_test = df_test['isOrg'].map(lambda v: 1 if v else 0)
 
 
-clf = MultinomialNB(alpha=.002)
+clf = MultinomialNB(alpha=.005)
 clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 

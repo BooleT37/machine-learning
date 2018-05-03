@@ -3,7 +3,7 @@ import re
 import pandas as pd
 
 
-def read_csv(filename, train, train_lines):
+def read_csv(filename, train, train_lines=None):
     with open(filename, encoding='utf-8') as f:
         df = pd.DataFrame(columns=['name', 'isOrg'])
         line_num = -1
@@ -21,7 +21,8 @@ def read_csv(filename, train, train_lines):
             line_rest = line[len(match[0]):].strip()
             if train:
                 name, is_org = get_is_org(line_rest, line_num)
-                name = parse_quotes(name)
+                if len(name) > 0:
+                    name = parse_quotes(name)
                 df = df.append({'name': name, 'isOrg': is_org}, ignore_index=True)
             else:
                 name = line_rest
