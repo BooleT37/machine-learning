@@ -69,7 +69,6 @@ class NaiveBayesSpamClassifier:
     def predict(self, filenames):
         df = pd.DataFrame(columns=['name', 'is_spam'])
         for i, filename in enumerate(filenames):
-            print(f'Processing text {i}')
             content = open(filename).read()
             df = df.append({'name': filename, 'is_spam': self.predict_text(content)}, ignore_index=True)
 
